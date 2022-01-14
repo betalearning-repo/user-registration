@@ -1,8 +1,8 @@
 import { Body, Controller, Delete, Get, HttpException, Param, Post } from "@nestjs/common";
 import { validate } from "class-validator";
-import { User } from './user.model'
-import { UserValidator } from "./user.validator";
-import { UsersService } from "./users.service";
+import { User } from '../../domain/models/user.model'
+import { UserValidator } from "../../validations/user.validator";
+import { UsersService } from "../../domain/service/users.service";
 
 @Controller('users')
 export class UsersController {

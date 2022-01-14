@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
-import { Address } from './address.model'
-import { AdressesService } from "./adresses.service";
+import { Address } from '../../domain/models/address.model'
+import { AdressesService } from "../../domain/service/adresses.service";
 
 @Controller('adresses')
 export class AdressesController {

@@ -1,17 +1,17 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config/dist/config.module';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { Address } from './address.model';
-import { AdressesController } from './adresses.controller';
-import { AdressesService } from './adresses.service';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { User } from './user.model';
-import { UsersController } from './users.controller';
-import { UsersService } from './users.service';
-import { Store } from './store.model';
-import { StoresController } from './stores.controller';
-import { StoresService } from './stores.service';
+import { Address } from '../../domain/models/address.model';
+import { AdressesController } from '../../application/controllers/adresses.controller';
+import { AdressesService } from '../../domain/service/adresses.service';
+import { AppController } from '../../app.controller';
+import { AppService } from '../../app.service';
+import { User } from '../../domain/models/user.model';
+import { UsersController } from '../../application/controllers/users.controller';
+import { UsersService } from '../../domain/service/users.service';
+import { Store } from '../../domain/models/store.model';
+import { StoresController } from '../../application/controllers/stores.controller';
+import { StoresService } from '../../domain/service/stores.service';
 
 @Module({
   imports: [

@@ -1,8 +1,8 @@
 import { HttpException, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
-import { Address } from "./address.model";
-import { Store } from "./store.model";
-import { User } from "./user.model";
+import { Address } from "../models/address.model";
+import { Store } from "../models/store.model";
+import { User } from "../models/user.model";
 
 
 @Injectable()

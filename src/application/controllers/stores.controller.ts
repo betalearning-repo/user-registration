@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
-import { Store } from "./store.model";
-import {StoresService} from './stores.service'
+import { Store } from "../../domain/models/store.model";
+import {StoresService} from '../../domain/service/stores.service'
 
 @Controller('stores')
 export class StoresController {
