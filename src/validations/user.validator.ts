@@ -1,5 +1,18 @@
-import { IsBoolean, IsDateString, IsEmail, IsInt, MaxDate, MaxLength, MinLength } from "class-validator";
+import { IsBoolean, IsDateString, IsEmail, IsInt, MaxLength, MinLength, Validate, ValidationArguments, ValidatorConstraint, ValidatorConstraintInterface } from "class-validator";
 import { DateOnlyDataType } from "sequelize/dist";
+
+@ValidatorConstraint({ name: 'DateLessThanYesterday', async: false })
+export class DateLessThanYesterday implements ValidatorConstraintInterface {
+    validate(text: string) {
+        const date = new Date(`${text}T00:00:00`);
+        const today = new Date();
+        return date.getTime() < new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime();
+    }
+
+    defaultMessage(args: ValidationArguments) {
+        return `maximal allowed date for ${args.property} is ${getYesterday().toISOString()}`;
+    }
+}
 
 export class UserValidator {
 
@@ -8,7 +21,7 @@ export class UserValidator {
     name: string;
 
     @IsDateString()
-    @MaxDate(getYesterday())
+    @Validate(DateLessThanYesterday)
     birthDate: DateOnlyDataType;
 
     @IsEmail()

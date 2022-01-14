@@ -56,7 +56,8 @@ export class User extends Model<User>{
     @ForeignKey(() => Store)
     @Column({
         type: DataType.INTEGER,
-        allowNull: false
+        allowNull: true,
+        defaultValue : null       
     })
     storeId: number;
 
@@ -78,5 +79,6 @@ export class User extends Model<User>{
 
     @BelongsTo(() => Store)
     store: Store;
+    
 
 }
