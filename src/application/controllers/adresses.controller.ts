@@ -21,6 +21,12 @@ export class AdressesController {
         return this.addressService.obterUm(params.id)
     }
 
+    @Get(':cep')
+    async pesquisaCep(@Param() params): Promise<Address> {
+        return this.addressService.pesquisaCep(params.cep)
+    }
+
+
     @Post()
     async criar(@Body() Address: Address) {
         this.addressService.criar(Address)

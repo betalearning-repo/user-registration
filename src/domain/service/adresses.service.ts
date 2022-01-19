@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
 import { Address } from "../models/address.model";
+import axios from 'axios';
 
 
 @Injectable()
@@ -27,4 +28,13 @@ export class AdressesService {
         const address: Address = await this.obterUm(id)
         address.destroy()
     }
+
+    //via CEP 
+    async pesquisaCep(cep: number) {
+        const address: Address = await axios.get(`viacep.com.br/ws/${cep}/json/`)
+        return address
+
+    }
+
+
 }

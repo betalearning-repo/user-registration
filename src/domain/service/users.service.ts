@@ -6,6 +6,8 @@ import { StoresService } from "./stores.service";
 import { Encrypt } from "../utils/encrypt";
 
 
+
+
 @Injectable()
 export class UsersService {
 
@@ -29,7 +31,7 @@ export class UsersService {
             if (user.userType.toUpperCase() === 'CLIENTE') {
                 const [store] = await this.storeService.obterTodos()
                 user.storeId = store.id
-                
+
             }
             const { salt, encryptedPassword } = new Encrypt().encryptPassword(user.password)
             user.password = encryptedPassword
@@ -41,6 +43,8 @@ export class UsersService {
             throw new HttpException(e, 422)
         }
     }
+
+
 
     async apagar(id: number) {
         const user: User = await this.obterUm(id)
