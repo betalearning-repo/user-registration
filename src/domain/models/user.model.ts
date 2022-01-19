@@ -46,6 +46,13 @@ export class User extends Model<User>{
     })
     password: string;
 
+    @Column({
+        type: DataType.STRING,
+        allowNull: true,
+        defaultValue: null
+    })
+    salt: string;
+
     @ForeignKey(() => Address)
     @Column({
         type: DataType.INTEGER,
@@ -57,7 +64,7 @@ export class User extends Model<User>{
     @Column({
         type: DataType.INTEGER,
         allowNull: true,
-        defaultValue : null       
+        defaultValue: null
     })
     storeId: number;
 
@@ -79,6 +86,6 @@ export class User extends Model<User>{
 
     @BelongsTo(() => Store)
     store: Store;
-    
+
 
 }

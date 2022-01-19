@@ -26,12 +26,13 @@ export class UsersController {
     @Post()
     async criar(@Body() user: User) {
         const userValidator = Object.assign(new UserValidator(), user)
-        const errors = await validate(userValidator)       
+        const errors = await validate(userValidator)
         if (errors.length > 0) {
             throw new HttpException(errors, 400);
         }
         await this.userService.criar(user)
     }
+
 
     @Delete(':id')
     async deletar(@Param() params) {

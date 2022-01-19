@@ -3,6 +3,8 @@ import { InjectModel } from "@nestjs/sequelize";
 import { Address } from "../models/address.model";
 import { User } from "../models/user.model";
 import { StoresService } from "./stores.service";
+import { Encrypt } from "../utils/encrypt";
+
 
 @Injectable()
 export class UsersService {
@@ -26,10 +28,16 @@ export class UsersService {
         try {
             if (user.userType.toUpperCase() === 'CLIENTE') {
                 const [store] = await this.storeService.obterTodos()
-                user.storeId = store.id              
+                user.storeId = store.id
+                
             }
+            const { salt, encryptedPassword } = new Encrypt().encryptPassword(user.password)
+            user.password = encryptedPassword
+            user.salt = salt
             return await this.userModel.create(user)
+
         } catch (e) {
+            console.log(e.stack || e.message)
             throw new HttpException(e, 422)
         }
     }
@@ -39,3 +47,4 @@ export class UsersService {
         user.destroy()
     }
 }
+

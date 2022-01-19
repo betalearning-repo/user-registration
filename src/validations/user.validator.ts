@@ -1,4 +1,4 @@
-import { IsBoolean, IsDateString, IsEmail, IsInt, MaxLength, MinLength, Validate, ValidationArguments, ValidatorConstraint, ValidatorConstraintInterface } from "class-validator";
+import { IsBoolean, IsDateString, IsEmail, IsInt, Matches, MaxLength, MinLength, Validate, ValidationArguments, ValidatorConstraint, ValidatorConstraintInterface } from "class-validator";
 import { DateOnlyDataType } from "sequelize/dist";
 
 @ValidatorConstraint({ name: 'DateLessThanYesterday', async: false })
@@ -32,6 +32,8 @@ export class UserValidator {
     cpf: string;
 
 
+    @Matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, {
+        message: 'Senha deve conter caractere especial, maiúsculo, número e minimo de 8 caracteres'})
     @MinLength(8)
     password: string;
 
